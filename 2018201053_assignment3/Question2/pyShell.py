@@ -249,40 +249,35 @@ while True:
 					indchange=0
 					if line_2=='':
 						break
-					indsec+=1
+					
 					indfir=0
 					first=open(s[0])
 					while True:
 						line_1=first.readline()
-						indfir+=1
+						
 						if line_1=='':
 							break
 						if line_1==line_2:
 							indchange=1
 							if indfir==indsec:
 								unchanged.append(line_1)
+								indfir+=1
 
 							if indsec!=indfir:
 								change.append(line_1)
+								indfir+=1
 
 						else:
+							indfir+=1
 							continue
 					if indchange==0:
 						added.append(line_2)
+					indsec+=1
 					
 				first=open(s[0])
 				for line in first:
 					if line not in change and line not in unchanged:
 						delete.append(line)
-
-				onlyadded=[]
-				onlydelete=[]
-				onlychange=[]
-				for i in added:
-					if i in delete:
-						onlychange.append("< "+i)
-					elif i not in delete:
-						onlychange.append("> "+i)
 
 				if len(added)!=0:
 					print('\033[94m'+'\033[1m'+'\033[4m'+"Lines Added:"+'\033[0m')
@@ -295,7 +290,7 @@ while True:
 						print('< ',i.strip())
 
 				if len(change)!=0:
-					print('\033[94m'+'\033[1m'+'\033[4m'+"Lines changed:"+'\033[0m')
+					print('\033[94m'+'\033[1m'+'\033[4m'+"Lines unchanged:"+'\033[0m')
 					for i in change:
 						print('< ',i.strip())
 
