@@ -8,7 +8,7 @@ import string
 
 
 while True:
-	x=raw_input(">>>")
+	x=raw_input('\033[92m'+'\033[1m'+os.getcwd()+"$ "+'\033[0m')
 	if x=="ls":
 		for f in listdir("."):
 			print(f, end=' ')
@@ -21,11 +21,11 @@ while True:
 		else:
 			try:
 				os.chdir(x)
-				for f in listdir("."):
-					print(f, end=' ')
-				print() 
+				# for f in listdir("."):
+				# 	print(f, end=' ')
+				# print() 
 			except:
-				print("No such directory exists!")  #done
+				print('\033[91m'+"No such directory exists!"+'\033[0m')  #done
 
 	if x=="pwd":
 		print(os.getcwd()) #done
@@ -33,7 +33,7 @@ while True:
 	if re.match("touch *",x): 
 		x=x[6:]
 		if len(x)<1:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		files=x.split() #if more than one file is put in touch
 		for f in files:
@@ -43,7 +43,7 @@ while True:
 	if re.match("head *",x):
 		x=x[5:]
 		if len(x)<1:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		if x[0]=="-":
 			y=x[1]
@@ -57,7 +57,7 @@ while True:
 					print(line, end='')
 				f.close()
 			except:
-				print("give valid file name!")
+				print('\033[91m'+"give valid file name!"+'\033[0m')
 		else:
 			try:
 				isfile(x)
@@ -81,13 +81,13 @@ while True:
 						print(line, end='')
 					f.close()
 			except:
-				print("give valid file name!")  #done  #done
+				print('\033[91m'+"give valid file name!"+'\033[0m')  #done  #done
 			
 
 	if re.match("tail *",x):
 		x=x[5:]
 		if len(x)<1:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		if x[0]=="-":
 			y=x[1] #tail -2 then y=2
@@ -114,7 +114,7 @@ while True:
 				f.close()
 				print()
 			except:
-				print("This file does not exist!")
+				print('\033[91m'+"This file does not exist!"+'\033[0m')
 		else:
 			try:
 				isfile(x)
@@ -146,12 +146,12 @@ while True:
 						print(line, end='')
 					f.close()
 			except:
-				print("This file does not exist!")  #done  #done
+				print('\033[91m'+"This file does not exist!"+'\033[0m')  #done  #done
 			
 	if re.match("tr *",x): 
 		x=x[3:]
 		if len(x)<2:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		st=x.split()
 		fr=st[0]
@@ -168,7 +168,7 @@ while True:
 	if re.match("grep *",x):
 		x=x[5:]
 		if len(x)<2:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		st=x.split(" ",1)
 		s=st[0].strip('\'')
@@ -185,12 +185,12 @@ while True:
 		except:
 			# print(string[0])
 			# print(string[1])
-			print("Enter valid file name")  #done #done
+			print('\033[91m'+"Enter valid file name"+'\033[0m')  #done #done
 
 	if re.match("sed *",x):
 		x=x[4:]
 		if len(x)<2:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		st=x.split(" ",1)
 		# print(st)
@@ -212,7 +212,7 @@ while True:
 						print(line, end="")
 				f.close()
 			except:
-				print("Either file name is invalid or command was wrongly typed!")
+				print('\033[91m'+"Either file name is invalid or command was wrongly typed!"+'\033[0m')
 		elif s[0]=='s' and s[-1]=='':
 			try:
 				isfile(file)
@@ -224,15 +224,15 @@ while True:
 						print(line, end="")
 				f.close()
 			except:
-				print("Either file name is invalid or command was wrongly typed!")
+				print('\033[91m'+"Either file name is invalid or command was wrongly typed!"+'\033[0m')
 		else:
-			print("sed: -e expression #1, char 12: unterminated `s' command")
+			print('\033[91m'+"sed: -e expression #1, char 12: unterminated `s' command"+'\033[0m')
 			pass  #done   #done  #done
 
 	if re.match("diff *",x):
 		x=x[5:]
 		if len(x)<2:
-			print("enter valid no. of arguments")
+			print('\033[91m'+"enter valid no. of arguments"+'\033[0m')
 			continue
 		s=x.split(" ")
 		if isfile(s[0]) and isfile(s[1]):
@@ -295,9 +295,9 @@ while True:
 						print('< ',i.strip())
 
 			except:
-				print("Error in opening the file!")
+				print('\033[91m'+"Error in opening the file!"+'\033[0m')
 		else:
-			print("Enter valid file name!")
+			print('\033[91m'+"Enter valid file name!"+'\033[0m')
 
 	if x=="exit()":
 		break
